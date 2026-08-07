@@ -160,4 +160,3 @@ pki-ca-backend/
           3. Certificate Validation Flow (OCSP)
 text
 Client → OCSP Request → ocsp-service → Checks current status → Signed OCSP Response!!!
-
