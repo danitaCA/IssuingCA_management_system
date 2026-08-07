@@ -23,12 +23,12 @@ This backend implements the core requirements defined in the Software Requiremen
 | Database           | PostgreSQL / MariaDB                |
 | Security           | Spring Security + RBAC + MFA        |
 | Cryptography       | Bouncy Castle + PKCS#11 (HSM)       |
-| API Documentation  | OpenAPI 3 (Swagger)                 |
+| API Documentation  | OpenAI 3 (Swagger)                 |
 | Build Tool         | Maven (Multi-module)                |
 
 ---
 
-## Project Structure
+## Project Structure   for   large enterprise Issuing CA system by  multiple module!
 
 ```text
 pki-ca-backend/
