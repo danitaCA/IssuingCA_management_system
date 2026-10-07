@@ -1,0 +1,38 @@
+services:
+  ra-mariadb:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ra_system
+      MARIADB_USER: ra_system
+      MARIADB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_RA_ROOT_PASSWORD:?Set MARIADB_RA_ROOT_PASSWORD}
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - ra_mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  ca-mariadb:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ca_system
+      MARIADB_USER: ca_system
+      MARIADB_PASSWORD: ${CA_DB_PASSWORD:?Set CA_DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_CA_ROOT_PASSWORD:?Set MARIADB_CA_ROOT_PASSWORD}
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - ca_mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+volumes:
+  ra_mariadb_data:
+  ca_mariadb_data:
